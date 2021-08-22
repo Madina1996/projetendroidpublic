@@ -1,4 +1,4 @@
-package com.example.gestionrvpatient;
+package com.example.gestionrvpatient.model;
 
 public class Patient extends Personne {
     private String code;

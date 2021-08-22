@@ -1,4 +1,6 @@
-package com.example.gestionrvpatient;
+package com.example.gestionrvpatient.model;
+
+import com.example.gestionrvpatient.model.Roles;
 
 public class User {
     private int id;

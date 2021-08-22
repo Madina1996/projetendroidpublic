@@ -1,4 +1,4 @@
-package com.example.gestionrvpatient;
+package com.example.gestionrvpatient.model;
 
 public class Personne {
     private int id;
