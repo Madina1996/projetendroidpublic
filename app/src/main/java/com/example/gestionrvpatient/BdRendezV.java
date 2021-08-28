@@ -135,7 +135,7 @@ public class BdRendezV extends SQLiteOpenHelper {
             cv.put("prenom",prenom);
             cv.put("nom",nom);
             cv.put("code",code);
-            cv.put("datenaisse",datenaisse);
+            cv.put("datenaiss",datenaisse);
             cv.put("telephone",telephone);
             cv.put("cni",cni);
             cv.put("email",email);
@@ -156,7 +156,7 @@ public class BdRendezV extends SQLiteOpenHelper {
             cv.put("prenom",prenom);
             cv.put("nom",nom);
             cv.put("code",code);
-            cv.put("datenaisse",datenaisse);
+            cv.put("datenaiss",datenaisse);
             cv.put("telephone",telephone);
             cv.put("cni",cni);
             cv.put("email",cni);
@@ -191,7 +191,7 @@ public class BdRendezV extends SQLiteOpenHelper {
                     patient.setCode(c.getString(c.getColumnIndex("code")));
                     patient.setEmail(c.getString(c.getColumnIndex("email")));
                     patient.setCni(c.getString(c.getColumnIndex("cni")));
-                    patient.setDatenaiss(c.getString(c.getColumnIndex("datenaisse")));
+                    patient.setDatenaiss(c.getString(c.getColumnIndex("datenaiss")));
                     patient.setId(c.getInt(c.getColumnIndex("id")));
                     patient.setNom(c.getString(c.getColumnIndex("nom")));
                     patient.setPrenom(c.getString(c.getColumnIndex("prenom")));
@@ -223,7 +223,7 @@ public class BdRendezV extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put("prenom",medecin.getPrenom());
         cv.put("nom",medecin.getNom());
-        cv.put("datenaisse",medecin.getDatenaiss());
+        cv.put("datenaiss",medecin.getDatenaiss());
         cv.put("telephone",medecin.getTelephone());
         cv.put("cni",medecin.getCni());
         cv.put("specialite",medecin.getSpecialite());
@@ -241,7 +241,7 @@ public class BdRendezV extends SQLiteOpenHelper {
             ContentValues cv = new ContentValues();
             cv.put("prenom",medecin.getPrenom());
             cv.put("nom",medecin.getNom());
-            cv.put("datenaisse",medecin.getDatenaiss());
+            cv.put("datenaiss",medecin.getDatenaiss());
             cv.put("telephone",medecin.getTelephone());
             cv.put("cni",medecin.getCni());
             cv.put("specialite",medecin.getSpecialite());
@@ -275,7 +275,7 @@ public class BdRendezV extends SQLiteOpenHelper {
                     Medecin medecin = new Medecin();
                     medecin.setSpecialite(c.getString(c.getColumnIndex("specialite")));
                     medecin.setCni(c.getString(c.getColumnIndex("cni")));
-                    medecin.setDatenaiss(c.getString(c.getColumnIndex("datenaisse")));
+                    medecin.setDatenaiss(c.getString(c.getColumnIndex("datenaiss")));
                     medecin.setId(c.getInt(c.getColumnIndex("id")));
                     medecin.setNom(c.getString(c.getColumnIndex("nom")));
                     medecin.setPrenom(c.getString(c.getColumnIndex("prenom")));

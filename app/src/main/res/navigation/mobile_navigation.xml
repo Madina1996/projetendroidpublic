@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_presentation">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_presentation"
         android:name="com.example.gestionrvpatient.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.gestionrvpatient.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_doctor"
+        android:name="com.example.gestionrvpatient.ListDocFragment"
+        android:label="@string/doctor"
+        tools:layout="@layout/fragment_list_doc" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.gestionrvpatient.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_help"
+        android:name="com.example.gestionrvpatient.AideFragment"
+        android:label="@string/help"
+        tools:layout="@layout/fragment_aide" />
 </navigation>
