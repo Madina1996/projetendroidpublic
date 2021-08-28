@@ -1,20 +1,21 @@
-package com.example.gestionrvpatient;
+package com.example.gestionrvpatient.model;
 
-public class Consultation {
+import com.example.gestionrvpatient.model.Medecin;
+import com.example.gestionrvpatient.model.Patient;
+
+public class RendezV {
     private int id;
-    private String datec;
+    private String daterv;
     private String description;
     private Patient patient;
     private Medecin medecin;
 
-    public Consultation(String datec, String description, Patient patient, Medecin medecin) {
-        this.datec = datec;
+    public RendezV(int id, String daterv, String description, Patient patient, Medecin medecin) {
+        this.id = id;
+        this.daterv = daterv;
         this.description = description;
         this.patient = patient;
         this.medecin = medecin;
-    }
-
-    public Consultation() {
     }
 
     public int getId() {
@@ -25,12 +26,15 @@ public class Consultation {
         this.id = id;
     }
 
-    public String getDatec() {
-        return datec;
+    public RendezV() {
     }
 
-    public void setDatec(String datec) {
-        this.datec = datec;
+    public String getDaterv() {
+        return daterv;
+    }
+
+    public void setDaterv(String daterv) {
+        this.daterv = daterv;
     }
 
     public String getDescription() {

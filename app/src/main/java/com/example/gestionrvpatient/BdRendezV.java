@@ -8,13 +8,21 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.gestionrvpatient.model.Consultation;
+import com.example.gestionrvpatient.model.Gerant;
+import com.example.gestionrvpatient.model.Medecin;
+import com.example.gestionrvpatient.model.Patient;
+import com.example.gestionrvpatient.model.RendezV;
+import com.example.gestionrvpatient.model.Roles;
+import com.example.gestionrvpatient.model.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BdRendezV extends SQLiteOpenHelper {
 
     public BdRendezV(@Nullable Context context) {
-        super(context, "rendezv.db", null, 1);
+        super(context, "gestionrendezv.db", null, 1);
     }
 
 
@@ -88,7 +96,7 @@ public class BdRendezV extends SQLiteOpenHelper {
         }
     }
 
-//    public User getByid(){
+//    public User getUserByid(){
 //        try {
 //           // List<String> list = new ArrayList<>();
 //            SQLiteDatabase db = this.getReadableDatabase();
@@ -140,7 +148,6 @@ public class BdRendezV extends SQLiteOpenHelper {
             return false;
         }
     }
-
     public boolean updatePatient(int id, String code, String prenom,String nom,String datenaisse,String telephone,String cni,String email){
         try {
             SQLiteDatabase db = this.getWritableDatabase();
@@ -210,7 +217,7 @@ public class BdRendezV extends SQLiteOpenHelper {
 
 
 //    crud medcin
-public boolean createMedecin(Medecin medecin){
+    public boolean createMedecin(Medecin medecin){
     try {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -228,7 +235,6 @@ public boolean createMedecin(Medecin medecin){
         return false;
     }
 }
-
     public boolean updateMedecin(Medecin medecin){
         try {
             SQLiteDatabase db = this.getWritableDatabase();
@@ -445,8 +451,111 @@ public boolean createMedecin(Medecin medecin){
         }
     }
 
+    //    crud Gerant
+
+    public boolean createGerant(Gerant gerant){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put("nom",gerant.getNom());
+            cv.put("prenom",gerant.getPrenom());
+            db.insert("gerant",null,cv);
+            db.close();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean updateGerant(Gerant gerant){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put("nom",gerant.getNom());
+            cv.put("prenom",gerant.getPrenom());
+            db.update("gerant",cv,"id='"+gerant.getId()+"'",null);
+            db.close();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean DeleteGerant(int id){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.delete("gerant","id='"+id+"'",null);
+            db.close();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
+    //    crud  Role
+
+    public boolean createRoles(Roles roles){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put("nom",roles.getNom());
+
+            db.insert("roles",null,cv);
+            db.close();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean updateRoles(Roles roles){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put("nom",roles.getNom());
+            db.update("roles",cv,"id='"+roles.getId()+"'",null);
+            db.close();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean DeleteRoles(int id){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.delete("roles","id='"+id+"'",null);
+            db.close();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public List<Roles> readRoles(){
+        try {
+            List<Roles> list = new ArrayList<>();
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor c = db.query("roles",null,null,null,null,null,null);
+            if(c!=null && c.getCount()>0){
+                c.moveToFirst();
+
+                do{
+                    Roles roles = new Roles();
+                    roles.setNom( c.getString(c.getColumnIndex("nom")));
+                    list.add(roles);
+                    c.moveToNext();
+                }while(!c.isAfterLast());
+            }
+            db.close();
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
 

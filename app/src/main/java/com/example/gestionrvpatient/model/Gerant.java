@@ -1,15 +1,17 @@
-package com.example.gestionrvpatient;
+package com.example.gestionrvpatient.model;
 
-public class Roles {
+public class Gerant {
     private int id;
+    private String prenom;
     private String nom;
 
-    public Roles(int id, String nom) {
+    public Gerant(int id, String prenom, String nom) {
         this.id = id;
+        this.prenom = prenom;
         this.nom = nom;
     }
 
-    public Roles() {
+    public Gerant() {
     }
 
     public int getId() {
@@ -18,6 +20,14 @@ public class Roles {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public String getNom() {
