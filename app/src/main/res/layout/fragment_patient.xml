@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"/>
 
     <EditText
-        android:id="@+id/txtDateNai"
+        android:id="@+id/txtDateNaiss"
         android:layout_marginTop="@dimen/dim_top"
         android:hint="Date Naissance"
         android:layout_width="match_parent"
