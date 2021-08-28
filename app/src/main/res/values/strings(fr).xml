@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GestionRvPatient</string>
+    <string name="connection">Connexion</string>
+    <string name="roleuser">Role</string>
+    <string name="login">Identifiant</string>
+    <string name="password">Mot de passe</string>
+    <string name="connect">Connecter</string>
+    <string name="sign_up">S\'inscrire</string>
+    <string name="email">chd@chd.com</string>
+    <string name="doctor">Docteur</string>
+    <string name="patient">Patient</string>
+    <string name="appointment">Rendez-vous</string>
+    <string name="help">Aide</string>
+    <string name="first_name">Prenom</string>
+    <string name="dateborn">Date de naissance</string>
+    <string name="dateappointment">Date du rendez-vou</string>
+    <string name="last_name">Nom</string>
+    <string name="save">Enregistrer</string>
+    <string name="cancel">Annuler</string>
+    <string name="back">Retour</string>
+    <string name="wait">Veuillez patienter SVP</string>
+    <string name="error_fields">Champs Obligatoires</string>
+    <string name="error_connection">Erreur de connexuin</string>
+    <string name="error_parameters"> Paramètres Incorrect </string>
+    <string name="success_save">Inscription succes </string>
+    <string name="specialite">Specialité </string>
+    <string name="generalist">Generaliste </string>
+    <string name="dentiste">Dentiste</string>
+    <string name="ophthalmo">Ophtalmologie</string>
+    <string name="orl">ORL </string>
+    <string name="gyneco">Genecologie</string>
+    <string name="pediatrics">Pediatrie </string>
+    <string name="dermato">Dermatologie </string>
+</resources>

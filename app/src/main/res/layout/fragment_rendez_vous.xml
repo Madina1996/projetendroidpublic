@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RendezVousFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="436dp"
+        android:layout_height="71dp"
+        android:background="@android:color/holo_blue_light"
+        app:cardBackgroundColor="#33B5E5">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="363dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center"
+            android:text="Nouveau rendez-vous"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="25dp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="616dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/patient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Patient"
+            android:layout_marginTop="@dimen/dim_top"
+            android:layout_marginLeft="@dimen/dim_left"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+
+        <Spinner
+            android:id="@+id/DropdownPatient"
+            style="@style/Widget.AppCompat.Spinner.DropDown"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_left"
+            android:layout_marginTop="@dimen/dim_top"
+            android:background="@android:drawable/btn_dropdown"
+            android:dropDownSelector="@android:color/white"
+            android:popupBackground="@android:color/darker_gray"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:spinnerMode="dropdown"
+            android:translationY="30dp" />
+
+        <Button
+            android:id="@+id/btnadd_patient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:backgroundTint="@android:color/holo_blue_light"
+            android:translationX="274dp"
+            android:translationY="50dp" />
+
+        <TextView
+            android:id="@+id/medecin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medecin"
+            android:layout_marginTop="135dp"
+            android:layout_marginLeft="@dimen/dim_left"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+
+        <Spinner
+            android:id="@+id/DropdownMedecin"
+            style="@style/Widget.AppCompat.Spinner.DropDown"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_left"
+            android:layout_marginTop="135dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:dropDownSelector="@android:color/white"
+            android:popupBackground="@android:color/darker_gray"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:spinnerMode="dropdown"
+            android:translationY="30dp" />
+
+        <Button
+            android:id="@+id/btnadd_medecin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:layout_marginTop="116dp"
+            android:backgroundTint="@android:color/holo_blue_light"
+            android:translationX="274dp"
+            android:translationY="50dp" />
+
+        <EditText
+            android:id="@+id/txt_dateappoinment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_left"
+            android:layout_marginRight="@dimen/dim_right"
+            android:ems="10"
+            android:text="Date appointment"
+            android:textSize="20dp"
+            android:layout_marginTop="250dp"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/txt_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="320dp"
+            android:layout_marginRight="@dimen/dim_right"
+            android:layout_marginLeft="@dimen/dim_left"
+            android:text="Decription"
+            android:textSize="20dp"/>
+
+        <Button
+            android:id="@+id/btn_Save"
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:translationY="470dp"
+            android:layout_marginLeft="@dimen/dim_left"
+            android:layout_marginRight="@dimen/dim_right"
+            app:backgroundTint="@android:color/holo_blue_dark" />
+
+        <Button
+            android:id="@+id/btn_Cancel"
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:translationY="550dp"
+            android:layout_marginLeft="@dimen/dim_left"
+            android:layout_marginRight="@dimen/dim_right"
+            app:backgroundTint="@android:color/holo_red_dark" />
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
