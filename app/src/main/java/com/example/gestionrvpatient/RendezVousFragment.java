@@ -1,5 +1,7 @@
 package com.example.gestionrvpatient;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 //import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,12 +12,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.fragment.app.Fragment;
 
-import com.example.gestionrvpatient.R;
-
 public class RendezVousFragment extends Fragment {
+
+    public Cursor type()
+    {
+        //Cursor cursor_patient =
+        //Cursor cursor_patient = bd.query()
+    }
     private EditText txt_dateappoinment, txt_description;
     private Button btn_Save, btn_Cancel;
     private String dateappoinment, description;
@@ -46,15 +51,5 @@ public class RendezVousFragment extends Fragment {
             }
         });
         return view;
-    }
-    public void FillSpinerPatient()
-    {
-        try {
-
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
     }
 }
