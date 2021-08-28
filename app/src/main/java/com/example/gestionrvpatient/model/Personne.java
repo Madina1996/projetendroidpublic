@@ -9,8 +9,8 @@ public class Personne {
     private String cni;
     private User user;
 
-    public Personne(int id, String nom, String prenom, String datenaiss, String telephone, String cni) {
-        this.id = id;
+    public Personne( String nom, String prenom, String datenaiss, String telephone, String cni) {
+
         this.nom = nom;
         this.prenom = prenom;
         this.datenaiss = datenaiss;
