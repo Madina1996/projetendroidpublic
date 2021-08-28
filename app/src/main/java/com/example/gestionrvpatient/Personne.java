@@ -9,7 +9,7 @@ public class Personne {
     private String cni;
     private User user;
 
-    public Personne(int id, String nom, String prenom, String datenaiss, String telephone, String cni) {
+    public Personne(String nom, String prenom, String datenaiss, String telephone, String cni) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
