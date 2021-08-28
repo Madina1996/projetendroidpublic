@@ -215,6 +215,14 @@ public class BdRendezV extends SQLiteOpenHelper {
         }
     }
 
+    /*public Cursor cursorcode()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor patientCurseur = db.query("patient",new String[] {
+            "id_user",
+            "code" },
+                null,null,null,null,null);
+    }*/
 
 //    crud medcin
     public boolean createMedecin(Medecin medecin){

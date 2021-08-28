@@ -16,11 +16,6 @@ import androidx.fragment.app.Fragment;
 
 public class RendezVousFragment extends Fragment {
 
-    public Cursor type()
-    {
-        //Cursor cursor_patient =
-        //Cursor cursor_patient = bd.query()
-    }
     private EditText txt_dateappoinment, txt_description;
     private Button btn_Save, btn_Cancel;
     private String dateappoinment, description;
