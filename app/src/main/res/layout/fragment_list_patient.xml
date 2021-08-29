@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:transformPivotX="23dp"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".ListPatientFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="389dp"
+        android:layout_height="71dp"
+        android:background="@android:color/holo_blue_light"
+        app:cardBackgroundColor="#33B5E5">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="363dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="20dp"
+            android:text="Liste des patients"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="594dp"
+        android:translationY="25dp" >
+        <ListView
+            android:id="@+id/ListPatient"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="100dp"
+            android:layout_marginLeft="@dimen/dim_left"
+            android:layout_marginRight="@dimen/dim_right"
+            />
+
+        <Button
+            android:id="@+id/btn_addAddPatient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:translationX="255dp"
+            android:translationY="518dp"
+            app:backgroundTint="@android:color/holo_blue_light" />
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

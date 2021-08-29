@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <item name="listPatient" type="id" />
+    <item name="fabAddPatient" type="id" />
+    <item name="fabAddConsultation" type="id" />
+</resources>
