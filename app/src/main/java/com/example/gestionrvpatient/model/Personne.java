@@ -7,7 +7,9 @@ public class Personne {
     private String datenaiss;
     private String telephone;
     private String cni;
+    private String code;
     private User user;
+
 
     public Personne( String nom, String prenom, String datenaiss, String telephone, String cni) {
 
@@ -42,8 +44,13 @@ public class Personne {
         return nom;
     }
 
+    public String getCode() {
+        return code;
+    }
 
-
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public void setNom(String nom) {
         this.nom = nom;

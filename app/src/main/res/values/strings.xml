@@ -1,12 +1,33 @@
 <resources>
+
     <string name="app_name">GestionRvPatient</string>
-    <string name="title_activity_home">HomeActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="connection">Connection</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="connect">Connect</string>
+    <string name="sign_up">Sign up</string>
+    <string name="email">isi@groupeisi.com</string>
+    <string name="patient">Patient</string>
+    <string name="appointment">Appointment</string>
+    <string name="first_name">First Name</string>
+    <string name="dateborn">Date of birt</string>
+    <string name="meetingdate">Date of the meeting</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="wait">Wait</string>
+    <string name="error_fields">Required Fields</string>
+    <string name="error_connection">Connection Error</string>
+    <string name="error_parameters">Incorrect Parameters</string>
+    <string name="success_save">Inscription succes </string>
+    <string name="specialite">Speciality </string>
+    <string name="generalist">Generalist </string>
+    <string name="dentiste">Dentist</string>
+    <string name="ophthalmo">Ophtalmology </string>
+    <string name="orl">orl </string>
+    <string name="gyneco">Genecology</string>
+    <string name="pediatrics">Pediatre </string>
+    <string name="dermato">Dermatology </string>
+    <string name="roleuser">Role</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
@@ -28,9 +49,26 @@
     <string name="finish">Finish</string>
     <string name="back">Back</string>
     <string name="done">Terminer</string>
-
+    <string name="dateappointment">Date du rendez-vou</string>
     <string name="description">
   Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
         quos omnis illo quod doloribus labore sit rerum vitae quasi quaerat
         ut repudiandae, expedita eaque atque fugit, fugiat perspiciatis harum quae.</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_university_fragment">Map</string>
+    <string name="title_activity_inscription">InscriptionActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

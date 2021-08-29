@@ -8,8 +8,8 @@ public class User {
     private String password;
     private Roles roles;
 
-    public User(int id, String login, String password, Roles roles) {
-        this.id = id;
+    public User(  String login, String password, Roles roles) {
+
         this.login = login;
         this.password = password;
         this.roles = roles;
@@ -49,4 +49,5 @@ public class User {
     public void setRoles(Roles roles) {
         this.roles = roles;
     }
+
 }

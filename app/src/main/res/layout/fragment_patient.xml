@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PatientFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_top"
+        android:background="#33B5E5"
+        android:gravity="center"
+        android:text="Nouveau Patient"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_title"
+        android:textStyle="bold" />
+
+    <EditText
+
+        android:id="@+id/txtNom"
+        android:layout_marginTop="@dimen/dim_top"
+        android:hint="Nom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/txtPrenom"
+        android:layout_marginTop="@dimen/dim_top"
+        android:hint="Prenom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/txtDateNaiss"
+        android:layout_marginTop="@dimen/dim_top"
+        android:hint="Date Naissance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"/>
+
+    <EditText
+        android:id="@+id/txtTel"
+        android:layout_marginTop="@dimen/dim_top"
+        android:hint="Telephone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/txtCNI"
+        android:layout_marginTop="@dimen/dim_top"
+        android:hint="CNI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnTerminer"
+        android:layout_width="308dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dim_title"
+        android:layout_marginTop="@dimen/dim_top"
+        android:layout_marginRight="@dimen/dim_title"
+        android:backgroundTint="@color/blue"
+        android:text="Terminer"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnSign_up"
+        android:layout_width="302dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dim_title"
+        android:layout_marginTop="@dimen/dim_top"
+        android:layout_marginRight="@dimen/dim_title"
+        android:backgroundTint="@color/red"
+        android:text="Annuler"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>

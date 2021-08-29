@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.gestionrvpatient.model.Medecin;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class ListDocFragment extends Fragment {
     private List<Medecin> tabmedcin, tabDetails;
     private List<String> tempmedin = new ArrayList<>();
     private BdRendezV bd;
+    FloatingActionButton fabAddMedcin;
     public ListDocFragment() {
         // Required empty public constructor
     }
@@ -115,6 +117,18 @@ public class ListDocFragment extends Fragment {
                 dialog.show();//Affiche la boite de dialogue
             }
         });
+        fabAddMedcin = view.findViewById(R.id.fabAddMedcin);
+        fabAddMedcin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.nav_host_fragment,new CreatDocFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
 
         return view;
     }

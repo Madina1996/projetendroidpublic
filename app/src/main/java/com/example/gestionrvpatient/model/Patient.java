@@ -1,12 +1,9 @@
 package com.example.gestionrvpatient.model;
 
 public class Patient extends Personne {
-    private String code;
     private String email;
-
-    public Patient( String nom, String prenom, String datenaiss, String telephone, String cni, String code, String email) {
+    public Patient( String nom, String prenom, String datenaiss, String telephone, String cni,  String email) {
         super( nom, prenom, datenaiss, telephone, cni);
-        this.code = code;
         this.email = email;
     }
 
@@ -14,13 +11,6 @@ public class Patient extends Personne {
         super( );
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     public String getEmail() {
         return email;

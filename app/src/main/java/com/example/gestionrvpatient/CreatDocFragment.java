@@ -1,5 +1,6 @@
 package com.example.gestionrvpatient;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.gestionrvpatient.model.Medecin;
+import com.example.gestionrvpatient.model.Roles;
+import com.example.gestionrvpatient.model.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,22 +84,39 @@ public class CreatDocFragment extends Fragment {
         btnfinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                medecin.setPrenom(txtFirstName.getText().toString().trim());
-                medecin.setNom(txtLastName.getText().toString().trim());
-                medecin.setSpecialite(txtSpeciality.getText().toString().trim());
-                medecin.setCni(txtCni.getText().toString().trim());
-                medecin.setDatenaiss(txtBirthday.getText().toString().trim());
-                medecin.setTelephone(txtCallNumber.getText().toString().trim());
+                User user = new User();
+                Roles roles = bd.getRolesByName("Medecin");
+                user.setLogin("DR"+txtLastName.getText().toString().trim());
+                user.setPassword("passer");
+                user.setRoles(roles);
+                User userresult = bd.createUser(user);
+                if(userresult !=null) {
+                    medecin.setCode(medecin.getNom() + user.getId());
+                    medecin.setPrenom(txtFirstName.getText().toString().trim());
+                    medecin.setNom(txtLastName.getText().toString().trim());
+                    medecin.setSpecialite(txtSpeciality.getText().toString().trim());
+                    medecin.setCni(txtCni.getText().toString().trim());
+                    medecin.setDatenaiss(txtBirthday.getText().toString().trim());
+                    medecin.setTelephone(txtCallNumber.getText().toString().trim());
+                    medecin.setUser(user);
+                    Boolean b = bd.createMedecin(medecin);
+                    if (b){
+                        Toast.makeText(getActivity(),"Medcin créé",Toast.LENGTH_LONG).show();
+                        Log.i("create user","Medcin créé");
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.nav_host_fragment,new ListDocFragment())
+                                .addToBackStack(null)
+                                .commit();
 
-                Boolean b = bd.createMedecin(medecin);
-                if (b){
-                    Toast.makeText(getActivity(),"Medcin créé",Toast.LENGTH_LONG).show();
-                    Log.i("create user","Medcin créé");
-
-                }else {
-                    Toast.makeText(getActivity(),"Medcin non créé",Toast.LENGTH_LONG).show();
-                    Log.i("create user","Medcin non créé");
+                    }else {
+                        Toast.makeText(getActivity(),"Medcin non créé",Toast.LENGTH_LONG).show();
+                         
+                    }
                 }
+
+
+
             }
         });
 

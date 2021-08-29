@@ -1,12 +1,12 @@
 package com.example.gestionrvpatient.model;
 
-public class Gerant {
+public class Gerant{
     private int id;
     private String prenom;
     private String nom;
+    private User user;
 
-    public Gerant(int id, String prenom, String nom) {
-        this.id = id;
+    public Gerant(  String login, String password, Roles roles, String prenom, String nom) {
         this.prenom = prenom;
         this.nom = nom;
     }
@@ -36,5 +36,13 @@ public class Gerant {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

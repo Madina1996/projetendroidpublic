@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GestionRvPatient">
         <activity
+            android:name=".InscriptionActivity"
+            android:label="@string/title_activity_inscription"
+            android:theme="@style/Theme.GestionRvPatient.NoActionBar"></activity>
+        <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/Theme.GestionRvPatient.NoActionBar"></activity>
+            android:theme="@style/Theme.GestionRvPatient.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

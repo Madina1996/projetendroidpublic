@@ -22,7 +22,7 @@ import java.util.List;
 public class BdRendezV extends SQLiteOpenHelper {
 
     public BdRendezV(@Nullable Context context) {
-        super(context, "gestionrendezv.db", null, 1);
+        super(context, "gestionrendezv.db", null, 2);
     }
 
 
@@ -30,10 +30,10 @@ public class BdRendezV extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE user(id INTEGER PRIMARY KEY AUTOINCREMENT,login VARCHAR(50),password VARCHAR(100),idrole INTEGER);");
         db.execSQL("CREATE TABLE patient(id INTEGER PRIMARY KEY AUTOINCREMENT,code VARCHAR(100),prenom VARCHAR(100), nom VARCHAR(100), datenaiss VARCHAR(100), telephone VARCHAR(100), cni VARCHAR(100), email VARCHAR(100),iduser INTEGER);");
-        db.execSQL("CREATE TABLE medecin(id INTEGER PRIMARY KEY AUTOINCREMENT,code VARCHAR(100),prenom VARCHAR(100), nom VARCHAR(100), datenaiss VARCHAR(100), telephone VARCHAR(100), cni VARCHAR(100),specialite VARCHAR(100));");
+        db.execSQL("CREATE TABLE medecin(id INTEGER PRIMARY KEY AUTOINCREMENT,code VARCHAR(100),prenom VARCHAR(100), nom VARCHAR(100), datenaiss VARCHAR(100), telephone VARCHAR(100), cni VARCHAR(100),specialite VARCHAR(100),iduser INTEGER);");
         db.execSQL("CREATE TABLE consultation(id INTEGER PRIMARY KEY AUTOINCREMENT,date VARCHAR(50),description VARCHAR(100),nump  INTEGER,nummed INTEGER);");
         db.execSQL("CREATE TABLE rendezv(id INTEGER PRIMARY KEY AUTOINCREMENT,date VARCHAR(50),description VARCHAR(100),nump  INTEGER,nummed INTEGER);");
-        db.execSQL("CREATE TABLE gerant(id INTEGER PRIMARY KEY AUTOINCREMENT,date VARCHAR(50),prenom VARCHAR(100),nom VARCHAR(100));");
+        db.execSQL("CREATE TABLE gerant(id INTEGER PRIMARY KEY AUTOINCREMENT,prenom VARCHAR(100),nom VARCHAR(100),iduser INTEGER);");
         db.execSQL("CREATE TABLE roles(id INTEGER PRIMARY KEY AUTOINCREMENT,nom VARCHAR(50));");
 
     }
@@ -55,20 +55,72 @@ public class BdRendezV extends SQLiteOpenHelper {
 //    crud uaser
 
 
-    public boolean createUser(String login,String password,int role){
+    public User createUser(User user){
         try {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues cv = new ContentValues();
-            cv.put("login",login);
-            cv.put("password",password);
-            cv.put("idrole",role);
+            cv.put("login",user.getLogin());
+            cv.put("password",user.getPassword());
+            cv.put("idrole",user.getRoles().getId());
             db.insert("user",null,cv);
+            Cursor c = db.rawQuery("SELECT MAX(id) FROM user", null);
+            if(c!=null && c.getCount()>0){
+                c.moveToFirst();
+                do{
+                    user.setId(c.getInt(c.getColumnIndex("id")));
+                    c.moveToNext();
+                }while(!c.isAfterLast());
+            }
             db.close();
-            return true;
+            return user;
         }catch (Exception e){
             e.printStackTrace();
-            return false;
+            return null;
         }
+    }
+    public User connexion (User user){
+
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM user WHERE TRIM(login) = '"+user.getLogin().trim()+"' AND  TRIM(password) = '"+user.getPassword().trim()+"'", null);
+            if(c!=null && c.getCount()>0){
+                c.moveToFirst();
+                do{
+                    user.setId(c.getInt(c.getColumnIndex("id")));
+                    user.setRoles(getRolesById(c.getInt(c.getColumnIndex("idrole"))));
+                    c.moveToNext();
+                }while(!c.isAfterLast());
+            }else {
+                user = null;
+            }
+            db.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return user;
+    }
+    public User getUserById(int id){
+        User user = new User();
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM user WHERE id = '"+id+"'", null);
+            if(c!=null && c.getCount()>0){
+                c.moveToFirst();
+                do{
+                    user.setId(c.getInt(c.getColumnIndex("id")));
+                    user.setRoles(getRolesById(c.getInt(c.getColumnIndex("idrole"))));
+                    user.setLogin(c.getString(c.getColumnIndex("login")));
+                    user.setPassword(c.getString(c.getColumnIndex("password")));
+                    c.moveToNext();
+                }while(!c.isAfterLast());
+            }else{
+                user = null;
+            }
+            db.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return user;
     }
     public boolean updateUser(String login,String password){
         try {
@@ -128,18 +180,18 @@ public class BdRendezV extends SQLiteOpenHelper {
 
 
 
-    public boolean createPatient(String code, String prenom,String nom,String datenaisse,String telephone,String cni,int iduser,String email){
+    public boolean createPatient(Patient patient){
         try {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues cv = new ContentValues();
-            cv.put("prenom",prenom);
-            cv.put("nom",nom);
-            cv.put("code",code);
-            cv.put("datenaiss",datenaisse);
-            cv.put("telephone",telephone);
-            cv.put("cni",cni);
-            cv.put("email",email);
-            cv.put("iduser",iduser);
+            cv.put("prenom",patient.getPrenom());
+            cv.put("nom",patient.getNom());
+            cv.put("code",patient.getCode());
+            cv.put("datenaiss",patient.getDatenaiss());
+            cv.put("telephone",patient.getTelephone());
+            cv.put("cni",patient.getCni());
+            cv.put("email",patient.getEmail());
+            cv.put("iduser",patient.getUser().getId());
             db.insert("patient",null,cv);
             db.close();
             return true;
@@ -148,19 +200,20 @@ public class BdRendezV extends SQLiteOpenHelper {
             return false;
         }
     }
-    public boolean updatePatient(int id, String code, String prenom,String nom,String datenaisse,String telephone,String cni,String email){
+    public boolean updatePatient(Patient patient){
         try {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues cv = new ContentValues();
             //cv.put("login",login);
-            cv.put("prenom",prenom);
-            cv.put("nom",nom);
-            cv.put("code",code);
-            cv.put("datenaiss",datenaisse);
-            cv.put("telephone",telephone);
-            cv.put("cni",cni);
-            cv.put("email",cni);
-            db.update("medecin",cv,"id='"+id+"'",null);
+            cv.put("prenom",patient.getPrenom());
+            cv.put("nom",patient.getNom());
+            cv.put("code",patient.getCode());
+            cv.put("datenaiss",patient.getDatenaiss());
+            cv.put("telephone",patient.getTelephone());
+            cv.put("cni",patient.getCni());
+            cv.put("email",patient.getEmail());
+            cv.put("iduser",patient.getUser().getId());
+            db.update("patient",cv,"id='"+patient.getId()+"'",null);
             db.close();
             return true;
         }catch (Exception e){
@@ -171,7 +224,7 @@ public class BdRendezV extends SQLiteOpenHelper {
     public boolean DeletePatient(int id){
         try {
             SQLiteDatabase db = this.getWritableDatabase();
-            db.delete("medecin","id='"+id+"'",null);
+            db.delete("patient","id='"+id+"'",null);
             db.close();
             return true;
         }catch (Exception e){
@@ -183,7 +236,7 @@ public class BdRendezV extends SQLiteOpenHelper {
         try {
             List<Patient> list = new ArrayList<>();
             SQLiteDatabase db = this.getReadableDatabase();
-            Cursor c = db.query("medecin",null,null,null,null,null,null);
+            Cursor c = db.query("patient",null,null,null,null,null,null);
             if(c!=null && c.getCount()>0){
                 c.moveToFirst();
                 do{
@@ -192,12 +245,12 @@ public class BdRendezV extends SQLiteOpenHelper {
                     patient.setEmail(c.getString(c.getColumnIndex("email")));
                     patient.setCni(c.getString(c.getColumnIndex("cni")));
                     patient.setDatenaiss(c.getString(c.getColumnIndex("datenaiss")));
-                    patient.setId(c.getInt(c.getColumnIndex("id")));
                     patient.setNom(c.getString(c.getColumnIndex("nom")));
                     patient.setPrenom(c.getString(c.getColumnIndex("prenom")));
                     patient.setTelephone(c.getString(c.getColumnIndex("telephone")));
+                    patient.setId(c.getInt(c.getColumnIndex("id")));
                     User user = new User();
-                    user.setId(c.getInt(c.getColumnIndex("id")));
+                    user.setId(c.getInt(c.getColumnIndex("iduser")));
                     patient.setUser(user);
                     list.add(patient);
                     //String password = c.getString(c.getColumnIndex("password"));
@@ -215,6 +268,14 @@ public class BdRendezV extends SQLiteOpenHelper {
         }
     }
 
+    /*public Cursor cursorcode()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor patientCurseur = db.query("patient",new String[] {
+            "id_user",
+            "code" },
+                null,null,null,null,null);
+    }*/
 
 //    crud medcin
     public boolean createMedecin(Medecin medecin){
@@ -227,6 +288,7 @@ public class BdRendezV extends SQLiteOpenHelper {
         cv.put("telephone",medecin.getTelephone());
         cv.put("cni",medecin.getCni());
         cv.put("specialite",medecin.getSpecialite());
+        cv.put("iduser",medecin.getUser().getId());
         db.insert("medecin",null,cv);
         db.close();
         return true;
@@ -245,6 +307,7 @@ public class BdRendezV extends SQLiteOpenHelper {
             cv.put("telephone",medecin.getTelephone());
             cv.put("cni",medecin.getCni());
             cv.put("specialite",medecin.getSpecialite());
+            cv.put("iduser",medecin.getUser().getId());
             db.update("medecin",cv,"id='"+medecin.getId()+"'",null);
             db.close();
             return true;
@@ -281,7 +344,7 @@ public class BdRendezV extends SQLiteOpenHelper {
                     medecin.setPrenom(c.getString(c.getColumnIndex("prenom")));
                     medecin.setTelephone(c.getString(c.getColumnIndex("telephone")));
                     User user = new User();
-                    user.setId(c.getInt(c.getColumnIndex("id")));
+                    user.setId(c.getInt(c.getColumnIndex("iduser")));
                     list.add(medecin);
                     //String password = c.getString(c.getColumnIndex("password"));
                     //list.add(password);
@@ -459,6 +522,7 @@ public class BdRendezV extends SQLiteOpenHelper {
             ContentValues cv = new ContentValues();
             cv.put("nom",gerant.getNom());
             cv.put("prenom",gerant.getPrenom());
+            cv.put("iduser",gerant.getUser().getId());
             db.insert("gerant",null,cv);
             db.close();
             return true;
@@ -473,6 +537,7 @@ public class BdRendezV extends SQLiteOpenHelper {
             ContentValues cv = new ContentValues();
             cv.put("nom",gerant.getNom());
             cv.put("prenom",gerant.getPrenom());
+            cv.put("iduser",gerant.getUser().getId());
             db.update("gerant",cv,"id='"+gerant.getId()+"'",null);
             db.close();
             return true;
@@ -509,6 +574,46 @@ public class BdRendezV extends SQLiteOpenHelper {
             e.printStackTrace();
             return false;
         }
+    }
+    public Roles getRolesByName(String nom){
+        Roles roles = new Roles();
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM roles WHERE TRIM(nom) = '"+nom.trim()+"'", null);
+            if(c!=null && c.getCount()>0){
+                c.moveToFirst();
+                do{
+                    roles.setId(c.getInt(c.getColumnIndex("id")));
+                    roles.setNom( c.getString(c.getColumnIndex("nom")));
+                    c.moveToNext();
+                }while(!c.isAfterLast());
+            }
+            db.close();
+            return roles;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public Roles getRolesById(int id){
+        Roles roles = new Roles();
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM roles WHERE id = '"+id+"'", null);
+            if(c!=null && c.getCount()>0){
+                c.moveToFirst();
+                do{
+                    roles.setId(c.getInt(c.getColumnIndex("id")));
+                    roles.setNom( c.getString(c.getColumnIndex("nom")));
+                    c.moveToNext();
+                }while(!c.isAfterLast());
+            }
+            db.close();
+            return roles;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
     public boolean updateRoles(Roles roles){
         try {
