@@ -86,8 +86,8 @@ public class InscriptionActivity extends AppCompatActivity {
                     String message = getString(R.string.error_fields);
                     Toast.makeText(getBaseContext(),message,Toast.LENGTH_SHORT).show();
                     Log.i("sorti",message);
-                }else if(password != confirmpassword) {
-                    Toast.makeText(getBaseContext(),"les deux mots de passe de correspondent pas",Toast.LENGTH_SHORT).show();
+                }else if(!password.equals(confirmpassword)) {
+                    Toast.makeText(getBaseContext(),"les deux mots de passe de correspondent pas"+password+" "+confirmpassword,Toast.LENGTH_SHORT).show();
                 }else{
                     //Log.i("selecter role",dropdown.getSelectedItem().toString());
                     if(dropdown.getSelectedItem().toString().equals("Gerant")){
@@ -103,11 +103,11 @@ public class InscriptionActivity extends AppCompatActivity {
                             gerant.setPrenom(firstName);
                             gerant.setUser(userresult);
                             if (bd.createGerant(gerant)){
-                                Log.i("infos","patient Ajouté");
+                                Log.i("infos","Gerant Ajouté");
                                 Intent intent=new Intent(InscriptionActivity.this, HomeActivity.class);
                                 startActivity(intent);
                             }else {
-                                Log.i("infos","patient non  Ajouté");
+                                Log.i("infos","Gerant non  Ajouté");
                             }
                         }
 

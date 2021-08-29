@@ -18,6 +18,8 @@ import com.example.gestionrvpatient.model.Medecin;
 import com.example.gestionrvpatient.model.Roles;
 import com.example.gestionrvpatient.model.User;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CreatDocFragment#newInstance} factory method to
@@ -72,48 +74,57 @@ public class CreatDocFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        bd = new BdRendezV(getContext());
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_creat_doc, container, false);
-        txtFirstName = view.findViewById(R.id.txtFirstName);
-        txtLastName = view.findViewById(R.id.txtLastName);
-        txtBirthday = view.findViewById(R.id.txtBirthday);
-        txtCallNumber = view.findViewById(R.id.txtCallNumber);
-        txtCni = view.findViewById(R.id.txtCni);
-        txtSpeciality = view.findViewById(R.id.txtSpeciality);
+        txtFirstName = view.findViewById(R.id.txtFirstNameDoc);
+        txtLastName = view.findViewById(R.id.txtLastNameDoc);
+        txtBirthday = view.findViewById(R.id.txtBirthdayDoc);
+        txtCallNumber = view.findViewById(R.id.txtCallNumberDoc);
+        txtCni = view.findViewById(R.id.txtCniDoc);
+        txtSpeciality = view.findViewById(R.id.txtSpecialityDoc);
         btnfinish = view.findViewById(R.id.btnfinish);
         btnfinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user = new User();
-                Roles roles = bd.getRolesByName("Medecin");
-                user.setLogin("DR"+txtLastName.getText().toString().trim());
-                user.setPassword("passer");
-                user.setRoles(roles);
-                User userresult = bd.createUser(user);
-                if(userresult !=null) {
-                    medecin.setCode(medecin.getNom() + user.getId());
-                    medecin.setPrenom(txtFirstName.getText().toString().trim());
-                    medecin.setNom(txtLastName.getText().toString().trim());
-                    medecin.setSpecialite(txtSpeciality.getText().toString().trim());
-                    medecin.setCni(txtCni.getText().toString().trim());
-                    medecin.setDatenaiss(txtBirthday.getText().toString().trim());
-                    medecin.setTelephone(txtCallNumber.getText().toString().trim());
-                    medecin.setUser(user);
-                    Boolean b = bd.createMedecin(medecin);
-                    if (b){
-                        Toast.makeText(getActivity(),"Medcin créé",Toast.LENGTH_LONG).show();
-                        Log.i("create user","Medcin créé");
-                        getFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.nav_host_fragment,new ListDocFragment())
-                                .addToBackStack(null)
-                                .commit();
+                medecin = new Medecin();
+                try {
+                    User user = new User();
+                    Roles roles = bd.getRolesByName("Medecin");
+                    user.setLogin("DR"+txtLastName.getText().toString().trim());
+                    user.setPassword("passer");
+                    user.setRoles(roles);
+                    User userresult = bd.createUser(user);
+                    if(userresult !=null) {
 
-                    }else {
-                        Toast.makeText(getActivity(),"Medcin non créé",Toast.LENGTH_LONG).show();
-                         
+                        medecin.setNom(txtLastName.getText().toString().trim());
+                        medecin.setCode(medecin.getNom() + user.getId());
+                        medecin.setPrenom(txtFirstName.getText().toString().trim());
+                        medecin.setSpecialite(txtSpeciality.getText().toString().trim());
+                        medecin.setCni(txtCni.getText().toString().trim());
+                        medecin.setDatenaiss(txtBirthday.getText().toString().trim());
+                        medecin.setTelephone(txtCallNumber.getText().toString().trim());
+                        medecin.setUser(user);
+                        Boolean b = bd.createMedecin(medecin);
+                        if (b){
+                            Toast.makeText(getActivity(),"Medcin créé",Toast.LENGTH_LONG).show();
+                            Log.i("create user","Medcin créé");
+                            getFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.nav_host_fragment,new ListDocFragment())
+                                    .addToBackStack(null)
+                                    .commit();
+
+                        }else {
+                            Toast.makeText(getActivity(),"Medcin non créé",Toast.LENGTH_LONG).show();
+
+                        }
                     }
+                }catch (Exception e){
+                  e.printStackTrace();
+                    //Toast.makeText(getActivity(),,Toast.LENGTH_LONG).show();
                 }
+
 
 
 

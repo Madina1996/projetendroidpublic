@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.service.autofill.AutofillService;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.gestionrvpatient.model.Roles;
 import com.example.gestionrvpatient.model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +25,20 @@ public class MainActivity extends AppCompatActivity {
         bd = new BdRendezV(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(bd.readRoles().size() == 0){
+            Roles roles = new Roles();
+            roles.setNom("Gerant");
+            if ( bd.createRoles(roles))
+                Log.i("create role","role Gerant cree");
+            roles.setNom("Patient");
+            if ( bd.createRoles(roles))
+                Log.i("create role","role Patient cree");
+            roles.setNom("Medecin");
+            if ( bd.createRoles(roles))
+                Log.i("create role","role Medecin cree");
+        }else {
+            Log.i("role existant",bd.readRoles().size()+" " );
+        }
         txtLogin= findViewById(R.id.txtLogin);
         txtPassword= findViewById(R.id.txtPassword);
         btnConnect= findViewById(R.id.btnConnect);

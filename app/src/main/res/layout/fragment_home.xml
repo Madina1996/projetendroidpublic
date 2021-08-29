@@ -3,23 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="690dp"
     tools:context=".ui.home.HomeFragment">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
-            android:src="@mipmap/ic_launcher_round"
+            android:src="@mipmap/ic_hospital1_round"
             android:layout_gravity="center"
             android:layout_width="200dp"
             android:layout_height="150dp"/>
-        <TextView
-            android:layout_margin="@dimen/dim_left"
-            android:textSize="@dimen/dim_title"
-            android:text="@string/description"
-            android:layout_marginTop="@dimen/dim_top"
+<!--        <TextView-->
+<!--            android:layout_margin="@dimen/dim_left"-->
+<!--            android:textSize="@dimen/dim_title"-->
+<!--            android:text="@string/description"-->
+<!--            android:layout_marginTop="@dimen/dim_top"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
+        <GridView
+            android:layout_marginTop="80dp"
+            android:id="@+id/idGVcourses"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="555dp"
+            android:horizontalSpacing="6dp"
+            android:numColumns="2"
+            android:verticalSpacing="6dp" />
     </LinearLayout>
 </ScrollView>
