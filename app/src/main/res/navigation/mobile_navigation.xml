@@ -18,8 +18,19 @@
         tools:layout="@layout/fragment_list_doc" />
 
     <fragment
+        android:id="@+id/nav_rendezv"
+        android:name="com.example.gestionrvpatient.ListeRendezVousFragment"
+        android:label="@string/doctor"
+        tools:layout="@layout/fragment_liste_rendez_vous" />
+
+    <fragment
         android:id="@+id/nav_help"
         android:name="com.example.gestionrvpatient.AideFragment"
         android:label="@string/help"
         tools:layout="@layout/fragment_aide" />
+    <fragment
+        android:id="@+id/nav_deconnec"
+        android:name="com.example.gestionrvpatient.DeconnectionFragment"
+        android:label="@string/help"
+        tools:layout="@layout/fragment_deconnection" />
 </navigation>

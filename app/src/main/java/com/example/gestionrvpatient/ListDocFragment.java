@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.gestionrvpatient.model.Medecin;
+import com.example.gestionrvpatient.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -34,26 +35,9 @@ public class ListDocFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.home, menu);
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.item1){
-            //What you want(Code Here)
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +52,10 @@ public class ListDocFragment extends Fragment {
             medecin.setSpecialite("dentiste");
             medecin.setNom("Ndiaye");
             medecin.setPrenom("Mame diarra");
+            medecin.setCode("xxxx1");
+            User user = new User();
+            user.setId(1);
+            medecin.setUser(user);
             if (bd.createMedecin(medecin)){
                 Log.i("sorti"," medcin 1 ajouter");
             }else {
@@ -79,6 +67,9 @@ public class ListDocFragment extends Fragment {
             medecin.setSpecialite("dentiste");
             medecin.setNom("Diamé");
             medecin.setPrenom("Aissatou");
+            medecin.setCode("xxxx1");
+            user.setId(1);
+            medecin.setUser(user);
             if (bd.createMedecin(medecin)){
                 Log.i("sorti"," medcin 2 ajouter");
             }else {
@@ -107,7 +98,7 @@ public class ListDocFragment extends Fragment {
                 dialog.setIcon(R.mipmap.ic_launcher);
                 dialog.setTitle("details");
                 dialog.setMessage(
-                        med.getPrenom() + med.getNom()+"\n\n"+
+                        med.getPrenom() +" "+ med.getNom()+"\n\n"+
                         "Specialité : "+med.getSpecialite()+"\n\n"+
                         "Telephone : "+med.getTelephone()+"\n\n"+
                         "CNI : "+med.getCni()+"\n\n"+
