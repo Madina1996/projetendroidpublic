@@ -71,43 +71,45 @@ public class PatientFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        bd = new BdRendezV(this.getContext());
         View view = inflater.inflate(R.layout.fragment_patient, container, false);
         txtNom = view.findViewById(R.id.txtNom);
         txtPrenom = view.findViewById(R.id.txtPrenom);
         txtDateNaiss = view.findViewById(R.id.txtDateNaiss);
         txtTel = view.findViewById(R.id.txtTel);
-        txtcni = view.findViewById(R.id.txtCni);
-        btnSave = view.findViewById(R.id.btn_Save);
+        txtcni = view.findViewById(R.id.txtCNI);
+        btnSave = view.findViewById(R.id.btnTerminer);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 User user = new User();
                 Roles roles = bd.getRolesByName("Patient");
-                user.setLogin("Patient"+txtNom.getText().toString().trim());
+                user.setLogin("P"+txtNom.getText().toString().trim());
                 user.setPassword("passer");
                 user.setRoles(roles);
                 User userresult = bd.createUser(user);
                 if(userresult !=null) {
-                    patient.setCode(patient.getNom() + user.getId());
-                    patient.setPrenom(txtNom.getText().toString().trim());
-                    patient.setNom(txtPrenom.getText().toString().trim());
+                    patient = new Patient();
+                    patient.setPrenom(txtPrenom.getText().toString().trim());
+                    patient.setNom(txtNom.getText().toString().trim());
                     patient.setCni(txtcni.getText().toString().trim());
                     patient.setDatenaiss(txtDateNaiss.getText().toString().trim());
                     patient.setTelephone(txtTel.getText().toString().trim());
+                    patient.setCode(patient.getNom() + user.getId());
                     patient.setUser(user);
                     Boolean b = bd.createPatient(patient);
                     if (b){
                         Toast.makeText(getActivity(),"Patient créé",Toast.LENGTH_LONG).show();
-                        Log.i("create user","Patient créé");
+                        Log.i("create Patient","Patient créé");
                         getFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.nav_host_fragment,new ConsultationFragment())
+                                .replace(R.id.nav_host_fragment,new NouveauConsutationFragment())
                                 .addToBackStack(null)
                                 .commit();
 
                     }else {
                         Toast.makeText(getActivity(),"Patient non créé",Toast.LENGTH_LONG).show();
-
+                        Log.i("create Patient","Patient non créé");
                     }
                 }
 

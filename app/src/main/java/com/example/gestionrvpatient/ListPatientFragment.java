@@ -47,16 +47,7 @@ public class ListPatientFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.home, menu);
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.item1){
-            //What you want(Code Here)
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,7 +99,7 @@ public class ListPatientFragment extends Fragment {
                 dialog.setIcon(R.mipmap.ic_launcher);
                 dialog.setTitle("details");
                 dialog.setMessage(
-                        pat.getPrenom() + pat.getNom()+"\n\n"+
+                        pat.getPrenom() +" "+ pat.getNom()+"\n\n"+
                                 "Telephone : "+pat.getTelephone()+"\n\n"+
                                 "CNI : "+pat.getCni()+"\n\n"+
                                 "Date de N. : "+pat.getDatenaiss()

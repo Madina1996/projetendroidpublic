@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -84,6 +85,7 @@ public class BdRendezV extends SQLiteOpenHelper {
                     user.setRoles(getRolesById(c.getInt(c.getColumnIndex("idrole"))));
                     user.setLogin(c.getString(c.getColumnIndex("login")));
                     user.setPassword(c.getString(c.getColumnIndex("password")));
+                    Log.i("id user",user.getId()+" ");
                     list.add(user);
                     //String password = c.getString(c.getColumnIndex("password"));
                     //list.add(password);
@@ -93,6 +95,7 @@ public class BdRendezV extends SQLiteOpenHelper {
 
             }
             db.close();
+
             return user;
         }catch (Exception e){
             e.printStackTrace();
@@ -569,9 +572,10 @@ public class BdRendezV extends SQLiteOpenHelper {
                 do{
                     Consultation consultation = new Consultation();
                     consultation.setDatec( c.getString(c.getColumnIndex("date")));
-                    consultation.setDescription( c.getString(c.getColumnIndex("date")));
+                    consultation.setDescription( c.getString(c.getColumnIndex("description")));
                     Patient patient = new Patient();
                     patient.setId(c.getInt(c.getColumnIndex("nump")));
+                    patient = getPatientById(patient.getId());
                     consultation.setPatient(patient);
                     Medecin medecin = new Medecin();
                     medecin.setId(c.getInt(c.getColumnIndex("nummed")));
@@ -646,7 +650,7 @@ public class BdRendezV extends SQLiteOpenHelper {
                 do{
                     RendezV rendezV = new RendezV();
                     rendezV.setDaterv( c.getString(c.getColumnIndex("date")));
-                    rendezV.setDescription( c.getString(c.getColumnIndex("date")));
+                    rendezV.setDescription( c.getString(c.getColumnIndex("description")));
                     Patient patient = new Patient();
                     patient.setId(c.getInt(c.getColumnIndex("nump")));
                     rendezV.setPatient(patient);
