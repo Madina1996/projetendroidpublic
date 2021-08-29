@@ -17,21 +17,21 @@
         android:text="@string/new_doctor" />
 
     <EditText
-        android:id="@+id/txtFirstName"
+        android:id="@+id/txtFirstNameDoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim_top"
         android:hint="@string/firs_name" />
 
     <EditText
-        android:id="@+id/txtLastName"
+        android:id="@+id/txtLastNameDoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim_top"
         android:hint="@string/last_name" />
 
     <EditText
-        android:id="@+id/txtBirthday"
+        android:id="@+id/txtBirthdayDoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim_top"
@@ -39,21 +39,21 @@
         android:hint="@string/birthday" />
 
     <EditText
-        android:id="@+id/txtCallNumber"
+        android:id="@+id/txtCallNumberDoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim_top"
         android:hint="@string/call" />
 
     <EditText
-        android:id="@+id/txtCni"
+        android:id="@+id/txtCniDoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim_top"
         android:hint="@string/cni" />
 
     <EditText
-        android:id="@+id/txtSpeciality"
+        android:id="@+id/txtSpecialityDoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim_top"
