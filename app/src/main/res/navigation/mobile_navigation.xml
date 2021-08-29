@@ -17,17 +17,27 @@
         android:label="@string/doctor"
         tools:layout="@layout/fragment_list_doc" />
 
-    <fragment
-        android:id="@+id/nav_rendezv"
-        android:name="com.example.gestionrvpatient.ListeRendezVousFragment"
-        android:label="@string/doctor"
-        tools:layout="@layout/fragment_liste_rendez_vous" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_rendezv"-->
+<!--        android:name="com.example.gestionrvpatient.ListeRendezVousF"-->
+<!--        android:label="@string/doctor"-->
+<!--        tools:layout="@layout/fragment_liste_rendez_vous" />-->
 
     <fragment
         android:id="@+id/nav_help"
         android:name="com.example.gestionrvpatient.AideFragment"
         android:label="@string/help"
         tools:layout="@layout/fragment_aide" />
+    <fragment
+        android:id="@+id/nav_consultation"
+        android:name="com.example.gestionrvpatient.ConsultationFragment"
+        android:label="@string/consultation"
+        tools:layout="@layout/fragment_consultation" />
+    <fragment
+        android:id="@+id/nav_Patient"
+        android:name="com.example.gestionrvpatient.ListPatientFragment"
+        android:label="@string/consultation"
+        tools:layout="@layout/fragment_list_patient" />
     <fragment
         android:id="@+id/nav_deconnec"
         android:name="com.example.gestionrvpatient.DeconnectionFragment"

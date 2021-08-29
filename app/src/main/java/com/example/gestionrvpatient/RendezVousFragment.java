@@ -110,8 +110,8 @@ public class RendezVousFragment extends Fragment {
                 }
                 else
                     {
-                        Patient patient= bd.getPatientByCodeP(dropdownP.getSelectedItem().toString());
-                        Medecin medecin=bd.getMedecinByCodeM(dropdowM.getSelectedItem().toString());
+                        Patient patient= bd.getPatientByCode(dropdownP.getSelectedItem().toString());
+                        Medecin medecin=bd.getMedecinByCode(dropdowM.getSelectedItem().toString());
                         if(dropdowM.getSelectedItem().toString().isEmpty() && dropdownP.getSelectedItem().toString().isEmpty())
                         {
                             try {
