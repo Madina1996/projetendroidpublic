@@ -148,38 +148,28 @@ public class BdRendezV extends SQLiteOpenHelper {
         }
     }
 
-//    public User getUserByid(){
-//        try {
-//           // List<String> list = new ArrayList<>();
-//            SQLiteDatabase db = this.getReadableDatabase();
-//            Cursor c = db.query("user",null,null,null,null,null,null);
-//            if(c!=null && c.getCount()>0){
-//                c.moveToFirst();
-//
-//                do{
-//                    String login = c.getString(c.getColumnIndex("login"));
-//                    list.add(login);
-//                    //String password = c.getString(c.getColumnIndex("password"));
-//                    //list.add(password);
-//                    c.moveToNext();
-//
-//                }while(!c.isAfterLast());
-//
-//            }
-//            db.close();
-//            return list;
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
-
-
-
 //    crud patient
 
-
-
+    public Patient getPatientByCodeP(String code){
+       Patient patient = new Patient();
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM patient WHERE TRIM(code) = '"+code.trim()+"'", null);
+            if(c!=null && c.getCount()>0){
+                c.moveToFirst();
+                do{
+                    patient.setId(c.getInt(c.getColumnIndex("id")));
+                    patient.setCode( c.getString(c.getColumnIndex("code")));
+                    c.moveToNext();
+                }while(!c.isAfterLast());
+            }
+            db.close();
+            return patient;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
     public boolean createPatient(Patient patient){
         try {
             SQLiteDatabase db = this.getWritableDatabase();
@@ -359,6 +349,28 @@ public class BdRendezV extends SQLiteOpenHelper {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Medecin getMedecinByCodeM(String code){
+        Medecin medecin= new Medecin();
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM medecin WHERE TRIM(code) = '"+code.trim()+"'", null);
+            if(c!=null && c.getCount()>0){
+                c.moveToFirst();
+                do{
+                    medecin.setId(c.getInt(c.getColumnIndex("id")));
+                    medecin.setCode( c.getString(c.getColumnIndex("code")));
+
+                    c.moveToNext();
+                }while(!c.isAfterLast());
+            }
+            db.close();
+            return medecin;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 //    crud consultation
